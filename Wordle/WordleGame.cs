@@ -31,28 +31,29 @@ namespace Wordle
 
 			return guessNumber;
         }
-
 		// TODO
-		public GuessResult CheckGuess( string guess )
+		public GuessResult CheckGuess(string guess)
         {
-			return new GuessResult(guess);
-        }
+			GuessResult _guess = new GuessResult(guess);
+			for (int i= 0; i<7; i++)
+            {
+				if (guess[i] == SecretWord[i])
+					_guess.Guess[i].LetterResult = LetterResult.Correct;
+				else if (SecretWord.Contains(guess[i]))
+					_guess.Guess[i].LetterResult = LetterResult.Misplaced;
+			}
 
+			return _guess;
+        }
 		private bool IsCorrect(GuessResult guessResult)
         {
 			foreach(var letterGuess in guessResult.Guess)
 			{
 				if (letterGuess.LetterResult != LetterResult.Correct)
 					return false;
-
 			}
-
 			return true;
         }
-
-
-
-
 	}
 }
 

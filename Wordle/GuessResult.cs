@@ -16,6 +16,7 @@ namespace Wordle
             {
 				Guess.Add(new LetterGuess(letter));
             }
+
 		}
 
         public override string ToString()

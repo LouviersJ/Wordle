@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Wordle
 {
@@ -11,9 +12,10 @@ namespace Wordle
 
         public bool IsValidWord(string word)
         {
-            return true;
+            string text = System.IO.File.ReadAllText(@$"{Directory.GetCurrentDirectory()}\data\english_words_full.txt");
+
+            return text.Contains(word.ToLower());
         }
 
     }
 }
-
