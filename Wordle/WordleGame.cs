@@ -35,7 +35,7 @@ namespace Wordle
 		public GuessResult CheckGuess(string guess)
         {
 			GuessResult _guess = new GuessResult(guess);
-			for (int i= 0; i<7; i++)
+			for (int i= 0; i<=7; i++)
             {
 				if (guess[i] == SecretWord[i])
 					_guess.Guess[i].LetterResult = LetterResult.Correct;
