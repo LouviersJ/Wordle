@@ -10,9 +10,10 @@ namespace Wordle
 
         public string GenerateGuess();
 
+
         public bool IsValidWord(string word)
         {
-            string text = System.IO.File.ReadAllText(@$"{Directory.GetCurrentDirectory()}\data\english_words_full.txt");
+            string text = System.IO.File.ReadAllText(@"..\..\..\data\english_words_full.txt");
 
             return text.Contains(word.ToLower());
         }

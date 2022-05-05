@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace Wordle
 {
@@ -6,16 +7,37 @@ namespace Wordle
     {
         static void Main(string[] args)
         {
-            var guessResult = new GuessResult("arise");
+            //var guessResult = new GuessResult("arise");
 
-            Console.WriteLine(guessResult);
+            //Console.WriteLine(guessResult);
 
-            //var bot = new BrycesSweetBot();
+            //string filePath = "../../../data/english_words_full.txt";
 
-            //var game = new WordleGame("saber");
+            int totalGuesses = 0;
 
-            //int guesses = game.Play(bot);
+            var secretWords = new string[] { "crane", "trash", "about" };
+
+            foreach (var secretWord in secretWords)
+            {
+                var bot = new louDestroyer();
+
+                Console.WriteLine("New Game!");
+                var game = new WordleGame(secretWord);
+
+                int guesses = game.Play(bot);
+                Console.WriteLine("Gameover.");
+                Console.WriteLine($"Num Guesses: {guesses}");
+                Console.WriteLine();
+
+                totalGuesses += guesses;
+
+            }
+            double averageGuesses = (double)totalGuesses / secretWords.Length;
+            Console.WriteLine();
+            Console.WriteLine($"Average Guesses: {averageGuesses}");
+
         }
     }
 }
+
 

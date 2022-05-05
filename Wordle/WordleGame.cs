@@ -1,43 +1,47 @@
 ﻿using System;
+using System.IO;
+
 namespace Wordle
 {
 	public class WordleGame
 	{
-        public string SecretWord { get; set; }
-        public int MaxGuesses { get; set; }
+		public string SecretWord { get; set; }
+		public int MaxGuesses { get; set; } = 100;
 
 		public WordleGame(string secretWord = "arise")
 		{
 			SecretWord = secretWord;
+
 		}
 
 		public int Play(IWordleBot bot)
-        {
+		{
 			int guessNumber;
-			for(guessNumber = 0; guessNumber < MaxGuesses; guessNumber++)
-            {
+			for (guessNumber = 1; guessNumber < MaxGuesses; guessNumber++)
+			{
 				string guess = bot.GenerateGuess();
-                Console.WriteLine($"guess {guessNumber + 1}: {guess}");
+				Console.WriteLine($"guess {guessNumber}: {guess}");
 
 				GuessResult guessResult = CheckGuess(guess);
 				bot.Guesses.Add(guessResult);
-                Console.WriteLine(guessResult);
+				Console.WriteLine(guessResult);
 
-				if(IsCorrect(guessResult))
-                {
+				if (IsCorrect(guessResult))
+				{
 					return guessNumber;
-                }
-            }
+				}
+			}
 
 			return guessNumber;
-        }
+		}
+
 		// TODO
 		public GuessResult CheckGuess(string guess)
         {
 			GuessResult _guess = new GuessResult(guess);
-			for (int i= 0; i<=7; i++)
+			for (int i= 0; i< SecretWord.Length; i++)
             {
-				if (guess[i] == SecretWord[i])
+				if (guess[i].Equals(SecretWord[i]))
 					_guess.Guess[i].LetterResult = LetterResult.Correct;
 				else if (SecretWord.Contains(guess[i]))
 					_guess.Guess[i].LetterResult = LetterResult.Misplaced;

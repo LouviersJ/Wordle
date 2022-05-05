@@ -11,4 +11,9 @@
   <ItemGroup>
     <Folder Include="data\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="louDestroyer.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
 </Project>
