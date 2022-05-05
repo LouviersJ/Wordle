@@ -11,7 +11,6 @@ namespace Wordle
 		public WordleGame(string secretWord = "arise")
 		{
 			SecretWord = secretWord;
-
 		}
 
 		public int Play(IWordleBot bot)
