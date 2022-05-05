@@ -27,11 +27,11 @@ namespace Wordle
             List<string> guessList = new List<string>();
             for (int i = 0; i <= 5; i++)
             {
-                if (oldWord[i] == 'C')
+                if (oldWord[i+6] == 'C')
                     guessList = (List<string>)remainingWords.Where(x => x[i] == newWord[i]);
-                if (oldWord[i] == 'I')
-                    guessList = (List<string>)remainingWords.Where(x => x[i] != newWord[i]);
-                if (oldWord[i] == 'M')
+                if (oldWord[i+6] == 'I')
+                    guessList = (List<string>)remainingWords.Where(x => !(x.Contains(newWord[i])));
+                if (oldWord[i+6] == 'M')
                     guessList = (List<string>)remainingWords.Where(x => x.Contains(newWord[i]));
             }
             remainingWords = guessList.ToArray();
